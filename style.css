@@ -1,0 +1,182 @@
+/* Bay Row — one stylesheet for all three pages.
+   Colours are lifted from the game itself so the site and the store
+   screenshots read as the same object. No fonts are loaded from anywhere:
+   a webfont on a three-page support site costs a round trip and buys
+   nothing that the system stack does not already give us. */
+
+:root {
+    --paper:  #FAF1E5;   /* the game's page */
+    --card:   #FFFAF2;   /* a sheet laid on top of it */
+    --ink:    #3C251C;
+    --ink2:   #5A443B;
+    --ink3:   #8A7263;
+    --accent: #BC6A20;   /* the board frame */
+    --link:   #8F4E14;   /* darker: the accent itself is only 3.6:1 on paper */
+    --edge:   rgba(60, 37, 28, 0.13);
+    --shadow: 0 2px 3px rgba(60, 37, 28, 0.07), 0 8px 24px rgba(60, 37, 28, 0.09);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --paper:  #1B1924;
+        --card:   #23202E;
+        --ink:    #EDE3D4;
+        --ink2:   #C9BCAC;
+        --ink3:   #9A8F86;
+        --accent: #D07C2E;
+        --link:   #E08A3C;
+        --edge:   rgba(237, 227, 212, 0.14);
+        --shadow: 0 2px 3px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.35);
+    }
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+    margin: 0;
+    padding: 0 20px 80px;
+    background: var(--paper);
+    /* the faintest suggestion of fibre — two offset dot grids, which is as
+       close to the game's paper as CSS gets without shipping an image */
+    background-image:
+        radial-gradient(circle at 1px 1px, var(--edge) 0.5px, transparent 0),
+        radial-gradient(circle at 7px 5px, var(--edge) 0.5px, transparent 0);
+    background-size: 14px 14px, 14px 14px;
+    color: var(--ink);
+    font: 17px/1.65 ui-sans-serif, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+.wrap { max-width: 44rem; margin: 0 auto; }
+
+/* ---------------------------------------------------------- masthead */
+
+header.bar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 28px 0 8px;
+}
+
+header.bar a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+    color: var(--ink);
+}
+
+header.bar svg { display: block; }
+
+header.bar .name {
+    font-size: 19px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+}
+
+/* ------------------------------------------------------------- type */
+
+h1 {
+    font-size: clamp(34px, 8vw, 52px);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    margin: 32px 0 14px;
+}
+
+h2 {
+    font-size: 23px;
+    letter-spacing: -0.01em;
+    margin: 42px 0 10px;
+}
+
+h3 {
+    font-size: 18px;
+    margin: 28px 0 6px;
+}
+
+p, li { color: var(--ink2); }
+
+.lede {
+    font-size: 20px;
+    line-height: 1.55;
+    color: var(--ink2);
+    margin-bottom: 28px;
+}
+
+.stamp {
+    font-size: 14px;
+    color: var(--ink3);
+    margin: 0 0 32px;
+}
+
+a { color: var(--link); text-underline-offset: 2px; }
+a:hover { text-decoration: none; }
+
+ul { padding-left: 1.25em; }
+li { margin: 5px 0; }
+
+strong { color: var(--ink); }
+
+/* ------------------------------------------------------------- cards */
+
+.card {
+    background: var(--card);
+    border: 1px solid var(--edge);
+    border-radius: 18px;
+    box-shadow: var(--shadow);
+    padding: 26px 24px;
+    margin: 26px 0;
+}
+
+.card h2:first-child, .card h3:first-child { margin-top: 0; }
+.card > :last-child { margin-bottom: 0; }
+
+/* the four traits, as chips — the same four claims the store listing makes */
+.chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 0;
+    margin: 20px 0 0;
+    list-style: none;
+}
+
+.chips li {
+    margin: 0;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink2);
+    background: var(--paper);
+    border: 1px solid var(--edge);
+    border-radius: 999px;
+    padding: 6px 13px;
+}
+
+/* ------------------------------------------------------------ e-mail */
+
+.mail {
+    display: inline-block;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--link);
+    text-decoration: none;
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 1px;
+}
+
+.mail:hover { border-bottom-color: var(--link); }
+
+/* ------------------------------------------------------------ footer */
+
+footer {
+    margin-top: 56px;
+    padding-top: 22px;
+    border-top: 1px solid var(--edge);
+    font-size: 15px;
+    color: var(--ink3);
+}
+
+footer nav { margin-bottom: 8px; }
+footer nav a { margin-right: 18px; }
